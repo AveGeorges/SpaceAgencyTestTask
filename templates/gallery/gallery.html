@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Космическое агентство{% endblock %}
+
+{% block content %}
+<header class="header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3 header-left">
+                <button class="burger-menu mobile-nav" type="button" aria-label="Toggle navigation">
+                    <img src="{% static 'icons/menu.svg' %}" alt="Menu">
+                </button>
+                <div class="logo">
+                    <img src="{% static 'icons/nasa-logo 1.svg' %}" alt="NASA Logo" class="logo-img desktop-logo">
+                    <img src="{% static 'icons/nasa-logo 1 (1).svg' %}" alt="NASA Logo" class="logo-img mobile-logo">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <nav class="navbar-nav d-flex flex-row justify-content-center gap-4 desktop-nav">
+                    <a href="#advantages" class="nav-link">ПРЕИМУЩЕСТВА</a>
+                    <a href="#photos" class="nav-link active">ФОТОГРАФИИ</a>
+                </nav>
+                <div class="mobile-menu" id="mobileMenu">
+                    <nav class="navbar-nav">
+                        <a href="#advantages" class="nav-link">ПРЕИМУЩЕСТВА</a>
+                        <a href="#photos" class="nav-link active">ФОТОГРАФИИ</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-3 text-end header-right">
+                <button class="btn-login">ВХОД</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="advantages" class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="hero-title">Космическое агентство</h1>
+                <p class="hero-description">
+                    Национальное управление по аэронавтике и исследованию космического пространства — ведомство, 
+                    относящееся к федеральному правительству США и подчиняющееся непосредственно президенту США.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row align-items-start">
+            <div class="col-lg-6 hero-image-col">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Earth from space" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-lg-6 features-col">
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <img src="{% static 'icons/fa6-solid_shuttle-space.svg' %}" alt="Space Shuttle">
+                        </div>
+                        <h3 class="feature-title">Спейс шаттлы — пилотируемые корабли</h3>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <img src="{% static 'icons/ion_telescope.svg' %}" alt="Telescope">
+                        </div>
+                        <h3 class="feature-title">Лучшее телескопическое оборудование</h3>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <img src="{% static 'icons/bi_moon-stars-fill.svg' %}" alt="Moon">
+                        </div>
+                        <h3 class="feature-title">Исследовательские станции на Луне — шаг к новым открытиям!</h3>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <img src="{% static 'icons/bxs_medal.svg' %}" alt="Medal">
+                        </div>
+                        <h3 class="feature-title">Золотая медаль по научным исследованиям</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="photos" class="photos-section">
+    <div class="container">
+        <h2 class="section-title">Фотографии</h2>
+        
+        {% if slider_items %}
+            <div class="main-slider">
+                {% for item in slider_items %}
+                    <div>
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="main-slide-image" data-index="{{ forloop.counter0 }}">
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="nav-slider-wrapper">
+                <div class="nav-slider">
+                    {% for item in slider_items %}
+                        <div>
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center">
+                <p>Нет изображений для отображения. Добавьте изображения через админ-панель.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<div id="fullscreenGallery">
+    <span class="fullscreen-close">&times;</span>
+    <div class="fullscreen-gallery-container">
+        <div class="fullscreen-gallery-slider">
+            {% for item in slider_items %}
+                <div>
+                    <div>
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="fullscreen-nav fullscreen-prev">
+            <img src="{% static 'icons/move-left.svg' %}" alt="Previous">
+        </div>
+        <div class="fullscreen-nav fullscreen-next">
+            <img src="{% static 'icons/move-left.svg' %}" alt="Next">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/gallery.js' %}"></script>
+{% endblock %}

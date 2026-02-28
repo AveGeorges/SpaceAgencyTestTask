@@ -1,0 +1,13 @@
+Django==5.2
+mysqlclient==2.2.4
+django-filer==3.4.4
+django-admin-sortable2==2.3.1
+easy-thumbnails==2.10.1
+Pillow==10.4.0
+python-decouple==3.8
+
+# Development tools
+black==24.1.1
+isort==5.13.2
+flake8==7.0.0
+flake8-docstrings==1.7.0
