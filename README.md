@@ -10,13 +10,27 @@
 
 ## Быстрый старт
 
-### 1. Установка зависимостей
+### 1. Создание виртуального окружения
+
+**Windows (PowerShell):**
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
+
+**Linux/Mac:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 2. Установка зависимостей
 
 ```bash
 pip install -r req.pip
 ```
 
-### 2. Настройка переменных окружения
+### 3. Настройка переменных окружения
 
 Скопируйте файл `env.example` в `.env`:
 
@@ -40,7 +54,7 @@ cp env.example .env
 - `DB_HOST` - хост MySQL (по умолчанию `localhost`)
 - `DB_PORT` - порт MySQL (по умолчанию `3306`)
 
-### 3. Создание базы данных
+### 4. Создание базы данных
 
 Создайте базу данных MySQL с именем, указанным в `.env` (по умолчанию `space_agency_db`):
 
@@ -48,19 +62,19 @@ cp env.example .env
 CREATE DATABASE space_agency_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-### 4. Выполнение миграций
+### 5. Выполнение миграций
 
 ```bash
 python manage.py migrate
 ```
 
-### 5. Создание суперпользователя
+### 6. Создание суперпользователя
 
 ```bash
 python manage.py createsuperuser
 ```
 
-### 6. Сбор статических файлов
+### 7. Сбор статических файлов
 
 ```bash
 python manage.py collectstatic --noinput
